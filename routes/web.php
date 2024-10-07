@@ -15,7 +15,7 @@ use App\Http\Controllers\CensusController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('upload');
 });
 // Rotas do desafio.
 Route::get('/upload', function () {
