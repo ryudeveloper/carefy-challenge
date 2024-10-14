@@ -6,12 +6,6 @@ use League\Csv\Reader;
 
 class CensusProcessingService
 {
-    /**
-     * processCsvFile
-     * Método responsável por processar o arquivo CSV em que foi feito upload.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     public function processCsvFile(string $filePath)
     {
         $csvData = Reader::createFromPath($filePath, 'r');
@@ -25,12 +19,6 @@ class CensusProcessingService
         }
         return $data;
     }
-    /**
-     * convertDateFormat
-     * Método responsável por converter data de yyyy-mm-dd para dd/mm/yyyy.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     private function convertDateFormat($date)
     {
         if (empty($date)) {

@@ -21,12 +21,6 @@ class CensusController extends Controller
         $this->validationService = $validationService;
         $this->processingService = $processingService;
     }
-    /**
-     * upload
-     * Método responsável por fazer upload e validação do arquivo CSV.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     public function upload(Request $request)
     {
         $this->validateFile($request);
@@ -36,12 +30,6 @@ class CensusController extends Controller
         session(['valid_data' => $validData, 'invalid_data' => $invalidData]);
         return redirect()->route('review.page');
     }
-    /**
-     * save
-     * Método responsável por salvar informações válidas do CSV no banco de dados.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     public function save(Request $request)
     {
         if (is_string($request->valid_data)) {
@@ -57,12 +45,6 @@ class CensusController extends Controller
 
         return response()->json(['message' => 'Dados salvos com sucesso']);
     }
-    /**
-     * storeValidData
-     * Método responsável por salvar dados válidos criando novo paciente e internação no banco de dados.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     protected function storeValidData(array $validData)
     {
         $newPatientsCount = 0;
@@ -84,12 +66,6 @@ class CensusController extends Controller
             'newInternments' => $newInternmentsCount,
         ];
     }
-    /**
-     * createInternment
-     * Método responsável por criar registros de internação no banco de dados.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     protected function createInternment($patientId, array $row)
     {
         $internment = Internment::where('var_guia', $row['guia'])->first();
@@ -108,24 +84,13 @@ class CensusController extends Controller
             'var_saida' => $row['saida'],
         ]);
     }
-    /**
-     * validateFile
-     * Método responsável por validar arquivo que irá ser feito o upload, irá verificar se é um .CSV.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
+
     protected function validateFile(Request $request)
     {
         $request->validate([
             'census_file' => 'required|file|mimes:csv,txt',
         ]);
     }
-    /**
-     * validateCensusData
-     * Método responsável por validar dados do arquivo que foi feito upload fazendo assim a distribuição de dados válidos e inválidos.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     protected function validateCensusData(array $data)
     {
         $validData = [];
@@ -144,12 +109,6 @@ class CensusController extends Controller
         }
         return [$validData, $invalidData];
     }
-    /**
-     * firstOrCreatePatient
-     * Método responsável por buscar ou criar paciente.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     protected function firstOrCreatePatient(array $row)
     {
         $patient = Patient::firstOrCreate([
@@ -161,12 +120,6 @@ class CensusController extends Controller
         \Log::info('Paciente criado ou encontrado:', ['patient' => $patient]);
         return $patient;
     }
-    /**
-     * createInternmentsInBatch
-     * Método responsável criar internações.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     protected function createInternmentsInBatch($patientId, array $rows)
     {
         $internments = [];
@@ -182,12 +135,6 @@ class CensusController extends Controller
         }
         Internment::insert($internments);
     }
-    /**
-     * review
-     * Método responsável pela página de review de pacientes e internações.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     public function review()
     {
         return view('review', [
@@ -195,12 +142,6 @@ class CensusController extends Controller
             'invalidData' => session('invalid_data', []),
         ]);
     }
-    /**
-     * listPatients
-     * Método responsável por listar pacientes.
-     * @author Miquéias Silva
-     * @since 10/2024
-     */
     public function listPatients()
     {
         $patients = Patient::with('internments')->get();
