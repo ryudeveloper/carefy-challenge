@@ -22,8 +22,8 @@ Antes de começar, você precisará ter instalado em sua máquina:
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu_usuario/censo-hospitalar.git
-   cd censo-hospitalar
+   git clone https://github.com/ryudeveloper/carefy-challenge.git
+   cd carefy-challenge
 
 2. **Instale as dependências do PHP:**
 
