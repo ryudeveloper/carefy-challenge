@@ -1,13 +1,19 @@
-# Censo Hospitalar
+# Carefy Challenge - Censo Hospitalar
 
 Este projeto é uma aplicação para o cadastro e gerenciamento de dados de censo hospitalar. Ele permite o upload de arquivos CSV, a revisão dos dados carregados e a persistência dos dados no banco de dados.
 
 ## Funcionalidades
 
-- **Upload do Censo:** Permite que o usuário envie um arquivo CSV com os dados do censo hospitalar.
+- **Upload do CSV** Permite que o usuário envie um arquivo CSV com os dados do censo hospitalar.
 - **Revisão de Dados:** Exibe os dados válidos e inválidos para o usuário revisar antes de salvá-los no banco de dados.
 - **Lista de Pacientes:** Exibe uma lista de todos os pacientes cadastrados e suas internações.
 - **Notificação de Novos Pacientes e Internações:** Informa ao usuário a quantidade de novos pacientes e internações cadastradas após a confirmação do upload.
+
+## Rotas da aplicação
+
+- **url/Upload:** Permite que o usuário envie um arquivo CSV com os dados do censo hospitalar.
+- **url/Review:** Exibe os dados válidos e inválidos para o usuário revisar antes de salvá-los no banco de dados.
+- **url/Patients:** Exibe uma lista de todos os pacientes cadastrados e suas internações.
 
 ## Pré-requisitos
 
@@ -65,8 +71,6 @@ Antes de começar, você precisará ter instalado em sua máquina:
     Abra seu navegador e entre na URL http://localhost:8000 para acessar a aplicação.
 
 ## Estrutura do Projeto
- **app/: Contém a lógica do aplicativo, incluindo controladores, modelos e serviços.**
+ **app/: Contém a lógica do aplicativo.**
 
  **resources/views/: Contém as views Blade do Laravel.**
-
- **public/: Contém os arquivos públicos, incluindo imagens, CSS e JavaScript.**
